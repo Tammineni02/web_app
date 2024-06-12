@@ -1,3 +1,10 @@
-FROM nginx:alpine
+FROM python:3.8-slim
 
-COPY index.html /usr/share/nginx/html
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+COPY . .
+
+CMD ["python", "app.py"]
